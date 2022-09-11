@@ -10,6 +10,7 @@ function myPage() {
     function formTestHandler(event) {
         event.preventDefault();
         
+        before();
         send();
 
         function send() {
@@ -30,11 +31,20 @@ function myPage() {
             fetch(url, requestOptions)
                 .then((response) => {
                     response.json().then((data) => {
+                        after();
                         responseCallback(data);
                     });
                 })
                 .catch((error) => console.log("error", error));  
         }
+        
+        function before() {
+            /*-- code --*/
+        }
+        
+        function after() {
+           /*-- code --*/ 
+        }        
         
         function responseCallback(data) {
             if(typeof data.status === "undefined" || typeof data.message === "undefined") {
